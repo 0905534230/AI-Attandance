@@ -60,19 +60,19 @@ while True:
     facesCurrentFrameLocation = face_recognition.face_locations(imgS)
     #Encode
     faceEncodeCurrentFrame = face_recognition.face_encodings(imgS,facesCurrentFrameLocation)
-
+    # Để camera nhận diện được khuôn mặt
     for face_encoding, face_loc in zip(faceEncodeCurrentFrame, facesCurrentFrameLocation):
         matches = face_recognition.compare_faces(encodeListKnown,face_encoding)
         face_distances = face_recognition.face_distance(encodeListKnown, face_encoding)
         matchIndex = np.argmin(face_distances)
-
+        #Nếu đã có ảnh train
         if matches[matchIndex]:
             nameOfPeople = className[matchIndex].upper()
             y1, x2, y2, x1 = face_loc
             cv2.rectangle(img, (x1,y2), (x2,y1), (0,255,0),2)
             cv2.rectangle(img, (x1,y2-35) , (x2,y2), (0,255,0), cv2.FILLED)
             cv2.putText(img, nameOfPeople,(x1, y2), cv2.FONT_HERSHEY_COMPLEX,1 ,(255,255,255) , 2 )
-
+        #Nếu k có ảnh
         else:
             nameOfPeople = 'unknown'.upper()
             y1, x2, y2, x1 = face_loc
@@ -89,3 +89,4 @@ while True:
 cap.release()
 cv2.destroyAllWindows()
 
+train
