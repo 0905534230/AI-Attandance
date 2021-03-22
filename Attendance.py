@@ -16,6 +16,7 @@ for cls in myList:
     #Chia ảnh thành 2 phần tên và đuôi
     # currentImage = cv2.imread(f'{path}/{cls}')
     currentImage = face_recognition.load_image_file(f'{path}/{cls}')
+    print(cls)
     images.append(currentImage)
     #lấy phần tử tên tương đương với phần tử đầu tiên của ảnh = 0
     className.append(os.path.splitext(cls)[0])
@@ -89,4 +90,3 @@ while True:
 cap.release()
 cv2.destroyAllWindows()
 
-train
